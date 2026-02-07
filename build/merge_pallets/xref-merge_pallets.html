@@ -187,6 +187,7 @@ imports:
  &#8226;   <a href="#typing">typing</a>
  &#8226;   <a href="#warnings">warnings</a>
  &#8226;   <a href="#weakref">weakref</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
 
   </div>
 
@@ -1274,6 +1275,9 @@ imported by:
  &#8226;   <a href="#six">six</a>
  &#8226;   <a href="#tomllib._parser">tomllib._parser</a>
  &#8226;   <a href="#tomllib._re">tomllib._re</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaLexer">xlwt.ExcelFormulaLexer</a>
+ &#8226;   <a href="#xlwt.Style">xlwt.Style</a>
+ &#8226;   <a href="#xlwt.antlr">xlwt.antlr</a>
 
   </div>
 
@@ -5535,6 +5539,7 @@ imported by:
  &#8226;   <a href="#setuptools.warnings">setuptools.warnings</a>
  &#8226;   <a href="#sqlite3.dbapi2">sqlite3.dbapi2</a>
  &#8226;   <a href="#tomllib._re">tomllib._re</a>
+ &#8226;   <a href="#xlwt.Row">xlwt.Row</a>
  &#8226;   <a href="#xmlrpc.client">xmlrpc.client</a>
 
   </div>
@@ -5952,6 +5957,7 @@ imported by:
  &#8226;   <a href="#pandas.io.formats.format">pandas.io.formats.format</a>
  &#8226;   <a href="#setuptools.config._validate_pyproject.fastjsonschema_validations">setuptools.config._validate_pyproject.fastjsonschema_validations</a>
  &#8226;   <a href="#statistics">statistics</a>
+ &#8226;   <a href="#xlwt.Row">xlwt.Row</a>
  &#8226;   <a href="#xmlrpc.client">xmlrpc.client</a>
 
   </div>
@@ -38171,6 +38177,8 @@ imported by:
  &#8226;   <a href="#urllib.parse">urllib.parse</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
  &#8226;   <a href="#warnings">warnings</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaLexer">xlwt.ExcelFormulaLexer</a>
+ &#8226;   <a href="#xlwt.Utils">xlwt.Utils</a>
  &#8226;   <a href="#xml.etree.ElementPath">xml.etree.ElementPath</a>
  &#8226;   <a href="#xml.etree.ElementTree">xml.etree.ElementTree</a>
  &#8226;   <a href="#zipfile._path">zipfile._path</a>
@@ -43296,6 +43304,13 @@ imported by:
  &#8226;   <a href="#setuptools.command.bdist_wheel">setuptools.command.bdist_wheel</a>
  &#8226;   <a href="#six">six</a>
  &#8226;   <a href="#tarfile">tarfile</a>
+ &#8226;   <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+ &#8226;   <a href="#xlwt.Bitmap">xlwt.Bitmap</a>
+ &#8226;   <a href="#xlwt.Cell">xlwt.Cell</a>
+ &#8226;   <a href="#xlwt.CompoundDoc">xlwt.CompoundDoc</a>
+ &#8226;   <a href="#xlwt.ExcelFormula">xlwt.ExcelFormula</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaParser">xlwt.ExcelFormulaParser</a>
+ &#8226;   <a href="#xlwt.UnicodeUtils">xlwt.UnicodeUtils</a>
  &#8226;   <a href="#zipfile">zipfile</a>
  &#8226;   <a href="#zipimport">zipimport</a>
 
@@ -43631,6 +43646,8 @@ imported by:
  &#8226;   <a href="#warnings">warnings</a>
  &#8226;   <a href="#weakref">weakref</a>
  &#8226;   <a href="#webbrowser">webbrowser</a>
+ &#8226;   <a href="#xlwt.antlr">xlwt.antlr</a>
+ &#8226;   <a href="#xlwt.compat">xlwt.compat</a>
  &#8226;   <a href="#xml.dom.domreg">xml.dom.domreg</a>
  &#8226;   <a href="#xml.etree.ElementTree">xml.etree.ElementTree</a>
  &#8226;   <a href="#xml.parsers.expat">xml.parsers.expat</a>
@@ -43778,6 +43795,7 @@ imported by:
  &#8226;   <a href="#setuptools.installer">setuptools.installer</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
  &#8226;   <a href="#urllib.response">urllib.response</a>
+ &#8226;   <a href="#xlwt.Worksheet">xlwt.Worksheet</a>
 
   </div>
 
@@ -45982,6 +46000,440 @@ imported by:
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
     <a href="#pandas.io.excel._xlsxwriter">pandas.io.excel._xlsxwriter</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/__init__.py" type="text/plain"><tt>xlwt</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+ &#8226;   <a href="#xlwt.Bitmap">xlwt.Bitmap</a>
+ &#8226;   <a href="#xlwt.Column">xlwt.Column</a>
+ &#8226;   <a href="#xlwt.CompoundDoc">xlwt.CompoundDoc</a>
+ &#8226;   <a href="#xlwt.ExcelFormula">xlwt.ExcelFormula</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaLexer">xlwt.ExcelFormulaLexer</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaParser">xlwt.ExcelFormulaParser</a>
+ &#8226;   <a href="#xlwt.Formatting">xlwt.Formatting</a>
+ &#8226;   <a href="#xlwt.Row">xlwt.Row</a>
+ &#8226;   <a href="#xlwt.Style">xlwt.Style</a>
+ &#8226;   <a href="#xlwt.Utils">xlwt.Utils</a>
+ &#8226;   <a href="#xlwt.Workbook">xlwt.Workbook</a>
+ &#8226;   <a href="#xlwt.Worksheet">xlwt.Worksheet</a>
+ &#8226;   <a href="#xlwt.antlr">xlwt.antlr</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#merge_pallets.py">merge_pallets.py</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+ &#8226;   <a href="#xlwt.Bitmap">xlwt.Bitmap</a>
+ &#8226;   <a href="#xlwt.Cell">xlwt.Cell</a>
+ &#8226;   <a href="#xlwt.Column">xlwt.Column</a>
+ &#8226;   <a href="#xlwt.CompoundDoc">xlwt.CompoundDoc</a>
+ &#8226;   <a href="#xlwt.ExcelFormula">xlwt.ExcelFormula</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaLexer">xlwt.ExcelFormulaLexer</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaParser">xlwt.ExcelFormulaParser</a>
+ &#8226;   <a href="#xlwt.ExcelMagic">xlwt.ExcelMagic</a>
+ &#8226;   <a href="#xlwt.Formatting">xlwt.Formatting</a>
+ &#8226;   <a href="#xlwt.Row">xlwt.Row</a>
+ &#8226;   <a href="#xlwt.Style">xlwt.Style</a>
+ &#8226;   <a href="#xlwt.UnicodeUtils">xlwt.UnicodeUtils</a>
+ &#8226;   <a href="#xlwt.Utils">xlwt.Utils</a>
+ &#8226;   <a href="#xlwt.Workbook">xlwt.Workbook</a>
+ &#8226;   <a href="#xlwt.Worksheet">xlwt.Worksheet</a>
+ &#8226;   <a href="#xlwt.antlr">xlwt.antlr</a>
+ &#8226;   <a href="#xlwt.compat">xlwt.compat</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.BIFFRecords"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/BIFFRecords.py" type="text/plain"><tt>xlwt.BIFFRecords</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#struct">struct</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.UnicodeUtils">xlwt.UnicodeUtils</a>
+ &#8226;   <a href="#xlwt.compat">xlwt.compat</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.Bitmap">xlwt.Bitmap</a>
+ &#8226;   <a href="#xlwt.Cell">xlwt.Cell</a>
+ &#8226;   <a href="#xlwt.Column">xlwt.Column</a>
+ &#8226;   <a href="#xlwt.Formatting">xlwt.Formatting</a>
+ &#8226;   <a href="#xlwt.Row">xlwt.Row</a>
+ &#8226;   <a href="#xlwt.Style">xlwt.Style</a>
+ &#8226;   <a href="#xlwt.Workbook">xlwt.Workbook</a>
+ &#8226;   <a href="#xlwt.Worksheet">xlwt.Worksheet</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.Bitmap"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/Bitmap.py" type="text/plain"><tt>xlwt.Bitmap</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#struct">struct</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.Worksheet">xlwt.Worksheet</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.Cell"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/Cell.py" type="text/plain"><tt>xlwt.Cell</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#struct">struct</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+ &#8226;   <a href="#xlwt.compat">xlwt.compat</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt.Row">xlwt.Row</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.Column"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/Column.py" type="text/plain"><tt>xlwt.Column</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.Worksheet">xlwt.Worksheet</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.CompoundDoc"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/CompoundDoc.py" type="text/plain"><tt>xlwt.CompoundDoc</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#struct">struct</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.compat">xlwt.compat</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.Workbook">xlwt.Workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.ExcelFormula"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/ExcelFormula.py" type="text/plain"><tt>xlwt.ExcelFormula</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#struct">struct</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaLexer">xlwt.ExcelFormulaLexer</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaParser">xlwt.ExcelFormulaParser</a>
+ &#8226;   <a href="#xlwt.antlr">xlwt.antlr</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.Row">xlwt.Row</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.ExcelFormulaLexer"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/ExcelFormulaLexer.py" type="text/plain"><tt>xlwt.ExcelFormulaLexer</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaParser">xlwt.ExcelFormulaParser</a>
+ &#8226;   <a href="#xlwt.antlr">xlwt.antlr</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.ExcelFormula">xlwt.ExcelFormula</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.ExcelFormulaParser"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/ExcelFormulaParser.py" type="text/plain"><tt>xlwt.ExcelFormulaParser</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#struct">struct</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.ExcelMagic">xlwt.ExcelMagic</a>
+ &#8226;   <a href="#xlwt.UnicodeUtils">xlwt.UnicodeUtils</a>
+ &#8226;   <a href="#xlwt.Utils">xlwt.Utils</a>
+ &#8226;   <a href="#xlwt.antlr">xlwt.antlr</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.ExcelFormula">xlwt.ExcelFormula</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaLexer">xlwt.ExcelFormulaLexer</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.ExcelMagic"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/ExcelMagic.py" type="text/plain"><tt>xlwt.ExcelMagic</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlwt">xlwt</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt.ExcelFormulaParser">xlwt.ExcelFormulaParser</a>
+ &#8226;   <a href="#xlwt.Utils">xlwt.Utils</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.Formatting"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/Formatting.py" type="text/plain"><tt>xlwt.Formatting</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.Row">xlwt.Row</a>
+ &#8226;   <a href="#xlwt.Style">xlwt.Style</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.Row"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/Row.py" type="text/plain"><tt>xlwt.Row</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#datetime">datetime</a>
+ &#8226;   <a href="#decimal">decimal</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+ &#8226;   <a href="#xlwt.Cell">xlwt.Cell</a>
+ &#8226;   <a href="#xlwt.ExcelFormula">xlwt.ExcelFormula</a>
+ &#8226;   <a href="#xlwt.Formatting">xlwt.Formatting</a>
+ &#8226;   <a href="#xlwt.Style">xlwt.Style</a>
+ &#8226;   <a href="#xlwt.compat">xlwt.compat</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.Worksheet">xlwt.Worksheet</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.Style"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/Style.py" type="text/plain"><tt>xlwt.Style</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+ &#8226;   <a href="#xlwt.Formatting">xlwt.Formatting</a>
+ &#8226;   <a href="#xlwt.compat">xlwt.compat</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.Row">xlwt.Row</a>
+ &#8226;   <a href="#xlwt.Workbook">xlwt.Workbook</a>
+ &#8226;   <a href="#xlwt.Worksheet">xlwt.Worksheet</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.UnicodeUtils"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/UnicodeUtils.py" type="text/plain"><tt>xlwt.UnicodeUtils</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#struct">struct</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.compat">xlwt.compat</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaParser">xlwt.ExcelFormulaParser</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.Utils"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/Utils.py" type="text/plain"><tt>xlwt.Utils</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#re">re</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.ExcelMagic">xlwt.ExcelMagic</a>
+ &#8226;   <a href="#xlwt.compat">xlwt.compat</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaParser">xlwt.ExcelFormulaParser</a>
+ &#8226;   <a href="#xlwt.Workbook">xlwt.Workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.Workbook"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/Workbook.py" type="text/plain"><tt>xlwt.Workbook</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+ &#8226;   <a href="#xlwt.CompoundDoc">xlwt.CompoundDoc</a>
+ &#8226;   <a href="#xlwt.Style">xlwt.Style</a>
+ &#8226;   <a href="#xlwt.Utils">xlwt.Utils</a>
+ &#8226;   <a href="#xlwt.Worksheet">xlwt.Worksheet</a>
+ &#8226;   <a href="#xlwt.compat">xlwt.compat</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.Worksheet"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/Worksheet.py" type="text/plain"><tt>xlwt.Worksheet</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#tempfile">tempfile</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+ &#8226;   <a href="#xlwt.Bitmap">xlwt.Bitmap</a>
+ &#8226;   <a href="#xlwt.Column">xlwt.Column</a>
+ &#8226;   <a href="#xlwt.Row">xlwt.Row</a>
+ &#8226;   <a href="#xlwt.Style">xlwt.Style</a>
+ &#8226;   <a href="#xlwt.compat">xlwt.compat</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.Workbook">xlwt.Workbook</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.antlr"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/antlr.py" type="text/plain"><tt>xlwt.antlr</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.compat">xlwt.compat</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt">xlwt</a>
+ &#8226;   <a href="#xlwt.ExcelFormula">xlwt.ExcelFormula</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaLexer">xlwt.ExcelFormulaLexer</a>
+ &#8226;   <a href="#xlwt.ExcelFormulaParser">xlwt.ExcelFormulaParser</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="xlwt.compat"></a>
+  <a target="code" href="///C:/Users/miroslavmalcenco/AppData/Local/Programs/Python/Python313/Lib/site-packages/xlwt/compat.py" type="text/plain"><tt>xlwt.compat</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#sys">sys</a>
+ &#8226;   <a href="#xlwt">xlwt</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#xlwt.BIFFRecords">xlwt.BIFFRecords</a>
+ &#8226;   <a href="#xlwt.Cell">xlwt.Cell</a>
+ &#8226;   <a href="#xlwt.CompoundDoc">xlwt.CompoundDoc</a>
+ &#8226;   <a href="#xlwt.Row">xlwt.Row</a>
+ &#8226;   <a href="#xlwt.Style">xlwt.Style</a>
+ &#8226;   <a href="#xlwt.UnicodeUtils">xlwt.UnicodeUtils</a>
+ &#8226;   <a href="#xlwt.Utils">xlwt.Utils</a>
+ &#8226;   <a href="#xlwt.Workbook">xlwt.Workbook</a>
+ &#8226;   <a href="#xlwt.Worksheet">xlwt.Worksheet</a>
+ &#8226;   <a href="#xlwt.antlr">xlwt.antlr</a>
 
   </div>
 

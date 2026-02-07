@@ -213,11 +213,28 @@ def format_date_columns(df: pd.DataFrame, cols: List[str]) -> pd.DataFrame:
 
 def save_output(df: pd.DataFrame, out_path: Path) -> None:
     try:
-            suffix = out_path.suffix.lower()
-            if suffix == ".xls":
-                df.to_excel(out_path, index=False, engine="xlwt")
-            else:
-                df.to_excel(out_path, index=False, engine="openpyxl")
+        # Принудительно сохраняем в .xls
+        if out_path.suffix.lower() != ".xls":
+            out_path = out_path.with_suffix(".xls")
+        # Проверка наличия xlwt
+        try:
+            import xlwt
+        except Exception:
+            logger.error("Для сохранения .xls требуется пакет xlwt. Установите: pip install xlwt")
+            return
+        workbook = xlwt.Workbook()
+        sheet = workbook.add_sheet("Sheet1")
+
+        # Заголовки
+        for col_idx, col_name in enumerate(df.columns):
+            sheet.write(0, col_idx, col_name)
+
+        # Данные
+        for row_idx, row in enumerate(df.itertuples(index=False), start=1):
+            for col_idx, value in enumerate(row):
+                sheet.write(row_idx, col_idx, "" if pd.isna(value) else value)
+
+        workbook.save(str(out_path))
         logger.info(f"Результат сохранён в {out_path}")
     except Exception as e:
         logger.error(f"Не удалось сохранить файл {out_path}: {e}")
@@ -298,14 +315,13 @@ def launch_gui() -> None:
     # Пути
     base_dir_var = tk.StringVar(value=str(Path.cwd()))
     spec_path_var = tk.StringVar(value="")
-    out_path_var = tk.StringVar(value=str(Path.cwd() / "Merged_Pallets.xlsx"))
     out_path_var = tk.StringVar(value=str(Path.cwd() / "Merged_Pallets.xls"))
 
     def choose_base_dir() -> None:
         path = filedialog.askdirectory(title="Выберите папку с Pallet-файлами")
         if path:
             base_dir_var.set(path)
-            out_path_var.set(str(Path(path) / "Merged_Pallets.xlsx"))
+            out_path_var.set(str(Path(path) / "Merged_Pallets.xls"))
 
     def choose_spec_file() -> None:
         path = filedialog.askopenfilename(
@@ -319,11 +335,10 @@ def launch_gui() -> None:
         path = filedialog.asksaveasfilename(
             title="Сохранить как",
             defaultextension=".xls",
-            filetypes=[("Excel files", "*.xls *.xlsx")],
+            filetypes=[("Excel files", "*.xls")],
         )
         if path:
             out_path_var.set(path)
-            out_path_var.set(str(Path(path) / "Merged_Pallets.xls"))
 
     def on_run() -> None:
         base_dir = Path(base_dir_var.get())
@@ -396,8 +411,7 @@ def main() -> None:
     if args.cli:
         base_dir = Path(args.base_dir) if args.base_dir else Path.cwd()
         spec_path = Path(args.spec) if args.spec else None
-        out_path = Path(args.out) if args.out else base_dir / "Merged_Pallets.xlsx"
-            out_path = Path(args.out) if args.out else base_dir / "Merged_Pallets.xls"
+        out_path = Path(args.out) if args.out else base_dir / "Merged_Pallets.xls"
         run_pipeline(base_dir=base_dir, spec_path=spec_path, out_path=out_path)
     else:
         launch_gui()
