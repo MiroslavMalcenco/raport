@@ -213,7 +213,11 @@ def format_date_columns(df: pd.DataFrame, cols: List[str]) -> pd.DataFrame:
 
 def save_output(df: pd.DataFrame, out_path: Path) -> None:
     try:
-        df.to_excel(out_path, index=False, engine="openpyxl")
+            suffix = out_path.suffix.lower()
+            if suffix == ".xls":
+                df.to_excel(out_path, index=False, engine="xlwt")
+            else:
+                df.to_excel(out_path, index=False, engine="openpyxl")
         logger.info(f"Результат сохранён в {out_path}")
     except Exception as e:
         logger.error(f"Не удалось сохранить файл {out_path}: {e}")
@@ -295,6 +299,7 @@ def launch_gui() -> None:
     base_dir_var = tk.StringVar(value=str(Path.cwd()))
     spec_path_var = tk.StringVar(value="")
     out_path_var = tk.StringVar(value=str(Path.cwd() / "Merged_Pallets.xlsx"))
+    out_path_var = tk.StringVar(value=str(Path.cwd() / "Merged_Pallets.xls"))
 
     def choose_base_dir() -> None:
         path = filedialog.askdirectory(title="Выберите папку с Pallet-файлами")
@@ -313,11 +318,12 @@ def launch_gui() -> None:
     def choose_output_file() -> None:
         path = filedialog.asksaveasfilename(
             title="Сохранить как",
-            defaultextension=".xlsx",
-            filetypes=[("Excel files", "*.xlsx")],
+            defaultextension=".xls",
+            filetypes=[("Excel files", "*.xls *.xlsx")],
         )
         if path:
             out_path_var.set(path)
+            out_path_var.set(str(Path(path) / "Merged_Pallets.xls"))
 
     def on_run() -> None:
         base_dir = Path(base_dir_var.get())
@@ -391,6 +397,7 @@ def main() -> None:
         base_dir = Path(args.base_dir) if args.base_dir else Path.cwd()
         spec_path = Path(args.spec) if args.spec else None
         out_path = Path(args.out) if args.out else base_dir / "Merged_Pallets.xlsx"
+            out_path = Path(args.out) if args.out else base_dir / "Merged_Pallets.xls"
         run_pipeline(base_dir=base_dir, spec_path=spec_path, out_path=out_path)
     else:
         launch_gui()
