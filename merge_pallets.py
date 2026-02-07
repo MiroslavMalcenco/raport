@@ -11,11 +11,23 @@ import logging
 import sys
 from typing import List, Dict, Optional
 
+import argparse
+import tkinter as tk
+from tkinter import ttk, filedialog, messagebox
+
 import pandas as pd
 
 
-logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+
+def _init_console_logging() -> None:
+    if any(isinstance(h, logging.StreamHandler) for h in logger.handlers):
+        return
+    handler = logging.StreamHandler(sys.stdout)
+    handler.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
+    logger.addHandler(handler)
 
 
 def process_pallet_file(path: Path) -> Optional[pd.DataFrame]:
@@ -135,12 +147,13 @@ def load_specification(path: Path) -> Optional[pd.DataFrame]:
     """
     try:
         logger.info(f"Читаю спецификацию {path} (вторая страница)")
-        spec = pd.read_excel(path, engine="openpyxl", sheet_name=1, dtype=str)
+        spec = pd.read_excel(path, engine="openpyxl", sheet_name=1)
         if spec.empty:
             logger.warning("Спецификация пуста.")
             return None
         # Приведём имя столбца 'Pallet number' к строкам
-        spec["Pallet number"] = spec["Pallet number"].astype(str).str.strip()
+        if "Pallet number" in spec.columns:
+            spec["Pallet number"] = spec["Pallet number"].astype(str).str.strip()
         return spec
     except Exception as e:
         logger.error(f"Не удалось загрузить спецификацию: {e}")
@@ -187,6 +200,17 @@ def enrich_with_spec(df: pd.DataFrame, spec: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def format_date_columns(df: pd.DataFrame, cols: List[str]) -> pd.DataFrame:
+    """Приводит столбцы дат к формату ДД.ММ.ГГГГ без времени."""
+    for c in cols:
+        if c not in df.columns:
+            continue
+        # Преобразуем в datetime, затем в нужный формат
+        dt = pd.to_datetime(df[c], errors="coerce")
+        df[c] = dt.dt.strftime("%d.%m.%Y")
+    return df
+
+
 def save_output(df: pd.DataFrame, out_path: Path) -> None:
     try:
         df.to_excel(out_path, index=False, engine="openpyxl")
@@ -194,9 +218,7 @@ def save_output(df: pd.DataFrame, out_path: Path) -> None:
     except Exception as e:
         logger.error(f"Не удалось сохранить файл {out_path}: {e}")
 
-
-def main() -> None:
-    base_dir = Path.cwd()
+def run_pipeline(base_dir: Path, spec_path: Optional[Path], out_path: Path) -> None:
     logger.info(f"Базовая директория: {base_dir}")
 
     processed_dfs: List[pd.DataFrame] = []
@@ -215,7 +237,7 @@ def main() -> None:
     # Шаг 2: объединение
     if not processed_dfs:
         logger.error("Нет обработанных файлов для объединения. Завершаю работу.")
-        sys.exit(1)
+        return
 
     merged = merge_dataframes(processed_dfs)
     logger.info(f"Объединено {len(processed_dfs)} файлов, итоговых строк: {len(merged)}")
@@ -223,21 +245,155 @@ def main() -> None:
     # Шаг 3: очистка первых трёх столбцов
     merged = clean_parentheses(merged)
 
-    # Шаг 4: загрузка спецификации от пользователя
-    spec_path_input = input("Введите путь к файлу спецификации (Excel): ").strip()
-    spec_path = Path(spec_path_input)
-    if not spec_path.exists():
-        logger.error(f"Файл спецификации {spec_path} не найден. Обогащение пропущено.")
-        spec_df = None
-    else:
+    # Шаг 4: загрузка спецификации
+    spec_df = None
+    if spec_path and spec_path.exists():
         spec_df = load_specification(spec_path)
+    else:
+        logger.warning("Файл спецификации не указан или не найден. Обогащение пропущено.")
 
     # Шаг 5: обогащение
     merged = enrich_with_spec(merged, spec_df)
 
+    # Шаг 5.1: форматирование дат
+    merged = format_date_columns(merged, ["MFD", "BBD"])
+
     # Шаг 6: сохранение
-    out = base_dir / "Merged_Pallets.xlsx"
-    save_output(merged, out)
+    save_output(merged, out_path)
+
+
+class TextHandler(logging.Handler):
+    """Логгер для вывода в Text-виджет Tkinter."""
+
+    def __init__(self, text_widget: tk.Text) -> None:
+        super().__init__()
+        self.text_widget = text_widget
+        self.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
+
+    def emit(self, record: logging.LogRecord) -> None:
+        msg = self.format(record)
+        self.text_widget.configure(state="normal")
+        self.text_widget.insert("end", msg + "\n")
+        self.text_widget.configure(state="disabled")
+        self.text_widget.see("end")
+
+
+def launch_gui() -> None:
+    root = tk.Tk()
+    root.title("Pallet Merger")
+    root.geometry("780x520")
+    root.minsize(720, 480)
+
+    style = ttk.Style(root)
+    if "clam" in style.theme_names():
+        style.theme_use("clam")
+
+    main_frame = ttk.Frame(root, padding=16)
+    main_frame.pack(fill="both", expand=True)
+
+    # Пути
+    base_dir_var = tk.StringVar(value=str(Path.cwd()))
+    spec_path_var = tk.StringVar(value="")
+    out_path_var = tk.StringVar(value=str(Path.cwd() / "Merged_Pallets.xlsx"))
+
+    def choose_base_dir() -> None:
+        path = filedialog.askdirectory(title="Выберите папку с Pallet-файлами")
+        if path:
+            base_dir_var.set(path)
+            out_path_var.set(str(Path(path) / "Merged_Pallets.xlsx"))
+
+    def choose_spec_file() -> None:
+        path = filedialog.askopenfilename(
+            title="Выберите файл спецификации",
+            filetypes=[("Excel files", "*.xlsx *.xlsm *.xls"), ("All files", "*.*")],
+        )
+        if path:
+            spec_path_var.set(path)
+
+    def choose_output_file() -> None:
+        path = filedialog.asksaveasfilename(
+            title="Сохранить как",
+            defaultextension=".xlsx",
+            filetypes=[("Excel files", "*.xlsx")],
+        )
+        if path:
+            out_path_var.set(path)
+
+    def on_run() -> None:
+        base_dir = Path(base_dir_var.get())
+        spec_path = Path(spec_path_var.get()) if spec_path_var.get().strip() else None
+        out_path = Path(out_path_var.get())
+
+        if not base_dir.exists():
+            messagebox.showerror("Ошибка", "Папка с Pallet-файлами не найдена.")
+            return
+
+        log_text.configure(state="normal")
+        log_text.delete("1.0", "end")
+        log_text.configure(state="disabled")
+
+        run_pipeline(base_dir=base_dir, spec_path=spec_path, out_path=out_path)
+        messagebox.showinfo("Готово", "Обработка завершена.")
+
+    # Верхние поля
+    row = 0
+    ttk.Label(main_frame, text="Папка с Pallet-файлами").grid(row=row, column=0, sticky="w")
+    ttk.Entry(main_frame, textvariable=base_dir_var, width=70).grid(row=row, column=1, sticky="we", padx=8)
+    ttk.Button(main_frame, text="Выбрать", command=choose_base_dir).grid(row=row, column=2)
+
+    row += 1
+    ttk.Label(main_frame, text="Файл спецификации").grid(row=row, column=0, sticky="w", pady=(8, 0))
+    ttk.Entry(main_frame, textvariable=spec_path_var, width=70).grid(row=row, column=1, sticky="we", padx=8, pady=(8, 0))
+    ttk.Button(main_frame, text="Выбрать", command=choose_spec_file).grid(row=row, column=2, pady=(8, 0))
+
+    row += 1
+    ttk.Label(main_frame, text="Выходной файл").grid(row=row, column=0, sticky="w", pady=(8, 0))
+    ttk.Entry(main_frame, textvariable=out_path_var, width=70).grid(row=row, column=1, sticky="we", padx=8, pady=(8, 0))
+    ttk.Button(main_frame, text="Выбрать", command=choose_output_file).grid(row=row, column=2, pady=(8, 0))
+
+    row += 1
+    ttk.Button(main_frame, text="Запустить", command=on_run).grid(row=row, column=0, columnspan=3, sticky="we", pady=12)
+
+    # Лог
+    ttk.Label(main_frame, text="Лог выполнения").grid(row=row + 1, column=0, sticky="w")
+    log_frame = ttk.Frame(main_frame)
+    log_frame.grid(row=row + 2, column=0, columnspan=3, sticky="nsew")
+    log_frame.rowconfigure(0, weight=1)
+    log_frame.columnconfigure(0, weight=1)
+
+    log_text = tk.Text(log_frame, height=12, wrap="word", state="disabled")
+    log_scroll = ttk.Scrollbar(log_frame, command=log_text.yview)
+    log_text.configure(yscrollcommand=log_scroll.set)
+    log_text.grid(row=0, column=0, sticky="nsew")
+    log_scroll.grid(row=0, column=1, sticky="ns")
+
+    main_frame.columnconfigure(1, weight=1)
+    main_frame.rowconfigure(row + 2, weight=1)
+
+    # Логи в GUI
+    gui_handler = TextHandler(log_text)
+    gui_handler.setLevel(logging.INFO)
+    logger.addHandler(gui_handler)
+
+    root.mainloop()
+
+
+def main() -> None:
+    _init_console_logging()
+    parser = argparse.ArgumentParser(description="Pallet merger")
+    parser.add_argument("--cli", action="store_true", help="Запуск без GUI")
+    parser.add_argument("--base-dir", type=str, help="Папка с Pallet-файлами")
+    parser.add_argument("--spec", type=str, help="Путь к файлу спецификации")
+    parser.add_argument("--out", type=str, help="Путь к выходному файлу")
+    args = parser.parse_args()
+
+    if args.cli:
+        base_dir = Path(args.base_dir) if args.base_dir else Path.cwd()
+        spec_path = Path(args.spec) if args.spec else None
+        out_path = Path(args.out) if args.out else base_dir / "Merged_Pallets.xlsx"
+        run_pipeline(base_dir=base_dir, spec_path=spec_path, out_path=out_path)
+    else:
+        launch_gui()
 
 
 if __name__ == "__main__":
