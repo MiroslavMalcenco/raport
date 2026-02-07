@@ -1,3 +1,0 @@
-([('merge_pallets',
-   '/Users/miroslavmalcenco/Desktop/raport/dist/merge_pallets',
-   'EXECUTABLE')],)
