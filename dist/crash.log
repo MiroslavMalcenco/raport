@@ -1,56 +1,321 @@
-INFO: Базовая директория: Z:\Desktop\Новая папка
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 1.xlsx
-INFO: В Pallet 1.xlsx: извлечён код палета '(00)446282175200002593', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 2.xlsx
-INFO: В Pallet 2.xlsx: извлечён код палета '(00)446282175200002470', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 3.xlsx
-INFO: В Pallet 3.xlsx: извлечён код палета '(00)446282175200002609', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 4.xlsx
-INFO: В Pallet 4.xlsx: извлечён код палета '(00)446282175200002487', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 5.xlsx
-INFO: В Pallet 5.xlsx: извлечён код палета '(00)446282175200002616', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 6.xlsx
-INFO: В Pallet 6.xlsx: извлечён код палета '(00)446282175200002494', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 7.xlsx
-INFO: В Pallet 7.xlsx: извлечён код палета '(00)446282175200002623', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 8.xlsx
-INFO: В Pallet 8.xlsx: извлечён код палета '(00)446282175200002500', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 9.xlsx
-INFO: В Pallet 9.xlsx: извлечён код палета '(00)446282175200002517', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 10.xlsx
-INFO: В Pallet 10.xlsx: извлечён код палета '(00)446282175200002524', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 11.xlsx
-INFO: В Pallet 11.xlsx: извлечён код палета '(00)446282175200002531', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 12.xlsx
-INFO: В Pallet 12.xlsx: извлечён код палета '(00)446282175200002548', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 13.xlsx
-INFO: В Pallet 13.xlsx: извлечён код палета '(00)446282175200002555', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 14.xlsx
-INFO: В Pallet 14.xlsx: извлечён код палета '(00)446282175200002562', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 15.xlsx
-INFO: В Pallet 15.xlsx: извлечён код палета '(00)446282175200002579', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 16.xlsx
-INFO: В Pallet 16.xlsx: извлечён код палета '(00)446282175200002586', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 17.xlsx
-INFO: В Pallet 17.xlsx: извлечён код палета '(00)446282175200002630', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 18.xlsx
-INFO: В Pallet 18.xlsx: извлечён код палета '(00)446282175200002647', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 19.xlsx
-INFO: В Pallet 19.xlsx: извлечён код палета '(00)446282175200002654', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 20.xlsx
-INFO: В Pallet 20.xlsx: извлечён код палета '(00)446282175200002661', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 21.xlsx
-INFO: В Pallet 21.xlsx: извлечён код палета '(00)446282175200002685', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 22.xlsx
-INFO: В Pallet 22.xlsx: извлечён код палета '(00)446282175200002678', удалено 73 строк.
-INFO: Читаю Z:\Desktop\Новая папка\Pallet 23.xlsx
-INFO: В Pallet 23.xlsx: извлечён код палета '(00)446282175200002692', удалено 73 строк.
-INFO: Объединено 23 файлов, итоговых строк: 39744
-INFO: Читаю спецификацию Z:\Desktop\0000-Q_027_M_(0). Heineken. НОДА\Спецификация. 0000-Q_027-M_(A).xlsx (вторая страница)
-INFO: Начинаю валидацию спецификации...
-INFO: Спецификация успешно проверена
-INFO: Order ID: 0000-Q_027_М_(0)
-INFO: Имя выходного файла: ОТЧЕТ. 0000-Q_027_М_(0).xls
-pandas\core\tools\datetimes.py:133: UserWarning: Parsing dates in %d.%m.%Y format when dayfirst=False (the default) was specified. Pass `dayfirst=True` or specify a format to silence this warning.
-pandas\core\tools\datetimes.py:133: UserWarning: Parsing dates in %d.%m.%Y format when dayfirst=False (the default) was specified. Pass `dayfirst=True` or specify a format to silence this warning.
-INFO: Результат сохранён в Z:\Desktop\Новая папка\ОТЧЕТ. 0000-Q_027_М_(0).xls
+INFO: Базовая директория: \\Mac\Home\Desktop\Выгрузка 1С - Татьяна
+INFO: Читаю спецификацию \\Mac\Home\Desktop\Спецификация. 0000-Q_002-M_(A).xlsx (вторая страница)
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 1.xlsx
+INFO: В Pallet 1.xlsx: извлечён код палета '(00)446602538100002351', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 2.xlsx
+INFO: В Pallet 2.xlsx: извлечён код палета '(00)446602538100002368', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 3.xlsx
+INFO: В Pallet 3.xlsx: извлечён код палета '(00)446602538100002375', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 4.xlsx
+INFO: В Pallet 4.xlsx: извлечён код палета '(00)446602538100002382', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 5.xlsx
+INFO: В Pallet 5.xlsx: извлечён код палета '(00)446602538100002399', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 6.xlsx
+INFO: В Pallet 6.xlsx: извлечён код палета '(00)446602538100002405', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 7.xlsx
+INFO: В Pallet 7.xlsx: извлечён код палета '(00)446602538100002412', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 8.xlsx
+INFO: В Pallet 8.xlsx: извлечён код палета '(00)446602538100002429', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 9.xlsx
+INFO: В Pallet 9.xlsx: извлечён код палета '(00)446602538100002436', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 10.xlsx
+INFO: В Pallet 10.xlsx: извлечён код палета '(00)446602538100002443', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 11.xlsx
+INFO: В Pallet 11.xlsx: извлечён код палета '(00)446602538100002450', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 12.xlsx
+INFO: В Pallet 12.xlsx: извлечён код палета '(00)446602538100002467', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 13.xlsx
+INFO: В Pallet 13.xlsx: извлечён код палета '(00)446602538100002474', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 14.xlsx
+INFO: В Pallet 14.xlsx: извлечён код палета '(00)446602538100002481', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 15.xlsx
+INFO: В Pallet 15.xlsx: извлечён код палета '(00)446602538100002498', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 16.xlsx
+INFO: В Pallet 16.xlsx: извлечён код палета '(00)446602538100002504', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 17.xlsx
+INFO: В Pallet 17.xlsx: извлечён код палета '(00)446602538100002511', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 18.xlsx
+INFO: В Pallet 18.xlsx: извлечён код палета '(00)446602538100002528', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 19.xlsx
+INFO: В Pallet 19.xlsx: извлечён код палета '(00)446602538100002535', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 20.xlsx
+INFO: В Pallet 20.xlsx: извлечён код палета '(00)446602538100002542', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 21.xlsx
+INFO: В Pallet 21.xlsx: извлечён код палета '(00)446602538100002559', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 22.xlsx
+INFO: В Pallet 22.xlsx: извлечён код палета '(00)446602538100002566', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 23.xlsx
+INFO: В Pallet 23.xlsx: извлечён код палета '(00)446602538100002573', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 24.xlsx
+INFO: В Pallet 24.xlsx: извлечён код палета '(00)446602538100002580', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 25.xlsx
+INFO: В Pallet 25.xlsx: извлечён код палета '(00)446602538100002597', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 1.xlsx
+INFO: В Pallet 1.xlsx: извлечён код палета '(00)446602538100002351', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 2.xlsx
+INFO: В Pallet 2.xlsx: извлечён код палета '(00)446602538100002368', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 3.xlsx
+INFO: В Pallet 3.xlsx: извлечён код палета '(00)446602538100002375', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 4.xlsx
+INFO: В Pallet 4.xlsx: извлечён код палета '(00)446602538100002382', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 5.xlsx
+INFO: В Pallet 5.xlsx: извлечён код палета '(00)446602538100002399', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 6.xlsx
+INFO: В Pallet 6.xlsx: извлечён код палета '(00)446602538100002405', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 7.xlsx
+INFO: В Pallet 7.xlsx: извлечён код палета '(00)446602538100002412', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 8.xlsx
+INFO: В Pallet 8.xlsx: извлечён код палета '(00)446602538100002429', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 9.xlsx
+INFO: В Pallet 9.xlsx: извлечён код палета '(00)446602538100002436', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 10.xlsx
+INFO: В Pallet 10.xlsx: извлечён код палета '(00)446602538100002443', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 11.xlsx
+INFO: В Pallet 11.xlsx: извлечён код палета '(00)446602538100002450', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 12.xlsx
+INFO: В Pallet 12.xlsx: извлечён код палета '(00)446602538100002467', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 13.xlsx
+INFO: В Pallet 13.xlsx: извлечён код палета '(00)446602538100002474', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 14.xlsx
+INFO: В Pallet 14.xlsx: извлечён код палета '(00)446602538100002481', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 15.xlsx
+INFO: В Pallet 15.xlsx: извлечён код палета '(00)446602538100002498', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 16.xlsx
+INFO: В Pallet 16.xlsx: извлечён код палета '(00)446602538100002504', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 17.xlsx
+INFO: В Pallet 17.xlsx: извлечён код палета '(00)446602538100002511', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 18.xlsx
+INFO: В Pallet 18.xlsx: извлечён код палета '(00)446602538100002528', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 19.xlsx
+INFO: В Pallet 19.xlsx: извлечён код палета '(00)446602538100002535', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 20.xlsx
+INFO: В Pallet 20.xlsx: извлечён код палета '(00)446602538100002542', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 21.xlsx
+INFO: В Pallet 21.xlsx: извлечён код палета '(00)446602538100002559', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 22.xlsx
+INFO: В Pallet 22.xlsx: извлечён код палета '(00)446602538100002566', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 23.xlsx
+INFO: В Pallet 23.xlsx: извлечён код палета '(00)446602538100002573', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 24.xlsx
+INFO: В Pallet 24.xlsx: извлечён код палета '(00)446602538100002580', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 25.xlsx
+INFO: В Pallet 25.xlsx: извлечён код палета '(00)446602538100002597', удалено 73 строк.
+INFO: Order ID: 0000-Q_002_М_(0)
+INFO: SKU 'Clausthaler Dry Hopped, Non-Alcohol beer, <0,5% Alc., 24 Tray X 0,33 Lit., Bottle': объединено 14 файлов, строк: 18144
+ERROR: Не удалось сохранить файл \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\ОТЧЕТ. 0000-Q_002_М_(0)_Clausthaler_Dry_Hopped,_Non-Alcohol_beer,_<0,5%_Alc.,_24_Tray_X_0,33_Lit.,_Bottle.xls: [Errno 22] Invalid argument: '\\\\Mac\\Home\\Desktop\\Выгрузка 1С - Татьяна\\ОТЧЕТ. 0000-Q_002_М_(0)_Clausthaler_Dry_Hopped,_Non-Alcohol_beer,_<0,5%_Alc.,_24_Tray_X_0,33_Lit.,_Bottle.xls'
+  → Рекомендация: Проверьте, что путь к файлу корректен и нет открытого файла с таким именем.
+ERROR: Сохранение результата для SKU 'Clausthaler Dry Hopped, Non-Alcohol beer, <0,5% Alc., 24 Tray X 0,33 Lit., Bottle' завершилось с ошибкой.
+INFO: Базовая директория: \\Mac\Home\Desktop\Выгрузка 1С - Татьяна
+INFO: Читаю спецификацию \\Mac\Home\Desktop\Спецификация. 0000-Q_002-M_(A).xlsx (вторая страница)
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 1.xlsx
+INFO: В Pallet 1.xlsx: извлечён код палета '(00)446602538100002351', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 2.xlsx
+INFO: В Pallet 2.xlsx: извлечён код палета '(00)446602538100002368', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 3.xlsx
+INFO: В Pallet 3.xlsx: извлечён код палета '(00)446602538100002375', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 4.xlsx
+INFO: В Pallet 4.xlsx: извлечён код палета '(00)446602538100002382', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 5.xlsx
+INFO: В Pallet 5.xlsx: извлечён код палета '(00)446602538100002399', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 6.xlsx
+INFO: В Pallet 6.xlsx: извлечён код палета '(00)446602538100002405', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 7.xlsx
+INFO: В Pallet 7.xlsx: извлечён код палета '(00)446602538100002412', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 8.xlsx
+INFO: В Pallet 8.xlsx: извлечён код палета '(00)446602538100002429', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 9.xlsx
+INFO: В Pallet 9.xlsx: извлечён код палета '(00)446602538100002436', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 10.xlsx
+INFO: В Pallet 10.xlsx: извлечён код палета '(00)446602538100002443', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 11.xlsx
+INFO: В Pallet 11.xlsx: извлечён код палета '(00)446602538100002450', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 12.xlsx
+INFO: В Pallet 12.xlsx: извлечён код палета '(00)446602538100002467', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 13.xlsx
+INFO: В Pallet 13.xlsx: извлечён код палета '(00)446602538100002474', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 14.xlsx
+INFO: В Pallet 14.xlsx: извлечён код палета '(00)446602538100002481', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 15.xlsx
+INFO: В Pallet 15.xlsx: извлечён код палета '(00)446602538100002498', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 16.xlsx
+INFO: В Pallet 16.xlsx: извлечён код палета '(00)446602538100002504', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 17.xlsx
+INFO: В Pallet 17.xlsx: извлечён код палета '(00)446602538100002511', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 18.xlsx
+INFO: В Pallet 18.xlsx: извлечён код палета '(00)446602538100002528', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 19.xlsx
+INFO: В Pallet 19.xlsx: извлечён код палета '(00)446602538100002535', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 20.xlsx
+INFO: В Pallet 20.xlsx: извлечён код палета '(00)446602538100002542', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 21.xlsx
+INFO: В Pallet 21.xlsx: извлечён код палета '(00)446602538100002559', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 22.xlsx
+INFO: В Pallet 22.xlsx: извлечён код палета '(00)446602538100002566', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 23.xlsx
+INFO: В Pallet 23.xlsx: извлечён код палета '(00)446602538100002573', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 24.xlsx
+INFO: В Pallet 24.xlsx: извлечён код палета '(00)446602538100002580', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 25.xlsx
+INFO: В Pallet 25.xlsx: извлечён код палета '(00)446602538100002597', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 1.xlsx
+INFO: В Pallet 1.xlsx: извлечён код палета '(00)446602538100002351', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 2.xlsx
+INFO: В Pallet 2.xlsx: извлечён код палета '(00)446602538100002368', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 3.xlsx
+INFO: В Pallet 3.xlsx: извлечён код палета '(00)446602538100002375', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 4.xlsx
+INFO: В Pallet 4.xlsx: извлечён код палета '(00)446602538100002382', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 5.xlsx
+INFO: В Pallet 5.xlsx: извлечён код палета '(00)446602538100002399', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 6.xlsx
+INFO: В Pallet 6.xlsx: извлечён код палета '(00)446602538100002405', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 7.xlsx
+INFO: В Pallet 7.xlsx: извлечён код палета '(00)446602538100002412', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 8.xlsx
+INFO: В Pallet 8.xlsx: извлечён код палета '(00)446602538100002429', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 9.xlsx
+INFO: В Pallet 9.xlsx: извлечён код палета '(00)446602538100002436', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 10.xlsx
+INFO: В Pallet 10.xlsx: извлечён код палета '(00)446602538100002443', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 11.xlsx
+INFO: В Pallet 11.xlsx: извлечён код палета '(00)446602538100002450', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 12.xlsx
+INFO: В Pallet 12.xlsx: извлечён код палета '(00)446602538100002467', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 13.xlsx
+INFO: В Pallet 13.xlsx: извлечён код палета '(00)446602538100002474', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 14.xlsx
+INFO: В Pallet 14.xlsx: извлечён код палета '(00)446602538100002481', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 15.xlsx
+INFO: В Pallet 15.xlsx: извлечён код палета '(00)446602538100002498', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 16.xlsx
+INFO: В Pallet 16.xlsx: извлечён код палета '(00)446602538100002504', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 17.xlsx
+INFO: В Pallet 17.xlsx: извлечён код палета '(00)446602538100002511', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 18.xlsx
+INFO: В Pallet 18.xlsx: извлечён код палета '(00)446602538100002528', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 19.xlsx
+INFO: В Pallet 19.xlsx: извлечён код палета '(00)446602538100002535', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 20.xlsx
+INFO: В Pallet 20.xlsx: извлечён код палета '(00)446602538100002542', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 21.xlsx
+INFO: В Pallet 21.xlsx: извлечён код палета '(00)446602538100002559', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 22.xlsx
+INFO: В Pallet 22.xlsx: извлечён код палета '(00)446602538100002566', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 23.xlsx
+INFO: В Pallet 23.xlsx: извлечён код палета '(00)446602538100002573', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 24.xlsx
+INFO: В Pallet 24.xlsx: извлечён код палета '(00)446602538100002580', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 25.xlsx
+INFO: В Pallet 25.xlsx: извлечён код палета '(00)446602538100002597', удалено 73 строк.
+INFO: Order ID: 0000-Q_002_М_(0)
+INFO: SKU 'Clausthaler Dry Hopped, Non-Alcohol beer, <0,5% Alc., 24 Tray X 0,33 Lit., Bottle': объединено 14 файлов, строк: 18144
+ERROR: Не удалось сохранить файл \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\ОТЧЕТ. 0000-Q_002_М_(0)_Clausthaler_Dry_Hopped,_Non-Alcohol_beer,_<0,5%_Alc.,_24_Tray_X_0,33_Lit.,_Bottle.xls: [Errno 22] Invalid argument: '\\\\Mac\\Home\\Desktop\\Выгрузка 1С - Татьяна\\ОТЧЕТ. 0000-Q_002_М_(0)_Clausthaler_Dry_Hopped,_Non-Alcohol_beer,_<0,5%_Alc.,_24_Tray_X_0,33_Lit.,_Bottle.xls'
+  → Рекомендация: Проверьте, что путь к файлу корректен и нет открытого файла с таким именем.
+ERROR: Сохранение результата для SKU 'Clausthaler Dry Hopped, Non-Alcohol beer, <0,5% Alc., 24 Tray X 0,33 Lit., Bottle' завершилось с ошибкой.
+INFO: Базовая директория: \\Mac\Home\Desktop\Выгрузка 1С - Татьяна
+INFO: Читаю спецификацию \\Mac\Home\Desktop\Спецификация. 0000-Q_002-M_(A).xlsx (вторая страница)
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 1.xlsx
+INFO: В Pallet 1.xlsx: извлечён код палета '(00)446602538100002351', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 2.xlsx
+INFO: В Pallet 2.xlsx: извлечён код палета '(00)446602538100002368', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 3.xlsx
+INFO: В Pallet 3.xlsx: извлечён код палета '(00)446602538100002375', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 4.xlsx
+INFO: В Pallet 4.xlsx: извлечён код палета '(00)446602538100002382', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 5.xlsx
+INFO: В Pallet 5.xlsx: извлечён код палета '(00)446602538100002399', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 6.xlsx
+INFO: В Pallet 6.xlsx: извлечён код палета '(00)446602538100002405', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 7.xlsx
+INFO: В Pallet 7.xlsx: извлечён код палета '(00)446602538100002412', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 8.xlsx
+INFO: В Pallet 8.xlsx: извлечён код палета '(00)446602538100002429', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 9.xlsx
+INFO: В Pallet 9.xlsx: извлечён код палета '(00)446602538100002436', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 10.xlsx
+INFO: В Pallet 10.xlsx: извлечён код палета '(00)446602538100002443', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 11.xlsx
+INFO: В Pallet 11.xlsx: извлечён код палета '(00)446602538100002450', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 12.xlsx
+INFO: В Pallet 12.xlsx: извлечён код палета '(00)446602538100002467', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 13.xlsx
+INFO: В Pallet 13.xlsx: извлечён код палета '(00)446602538100002474', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 14.xlsx
+INFO: В Pallet 14.xlsx: извлечён код палета '(00)446602538100002481', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 15.xlsx
+INFO: В Pallet 15.xlsx: извлечён код палета '(00)446602538100002498', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 16.xlsx
+INFO: В Pallet 16.xlsx: извлечён код палета '(00)446602538100002504', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 17.xlsx
+INFO: В Pallet 17.xlsx: извлечён код палета '(00)446602538100002511', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 18.xlsx
+INFO: В Pallet 18.xlsx: извлечён код палета '(00)446602538100002528', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 19.xlsx
+INFO: В Pallet 19.xlsx: извлечён код палета '(00)446602538100002535', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 20.xlsx
+INFO: В Pallet 20.xlsx: извлечён код палета '(00)446602538100002542', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 21.xlsx
+INFO: В Pallet 21.xlsx: извлечён код палета '(00)446602538100002559', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 22.xlsx
+INFO: В Pallet 22.xlsx: извлечён код палета '(00)446602538100002566', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 23.xlsx
+INFO: В Pallet 23.xlsx: извлечён код палета '(00)446602538100002573', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 24.xlsx
+INFO: В Pallet 24.xlsx: извлечён код палета '(00)446602538100002580', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 25.xlsx
+INFO: В Pallet 25.xlsx: извлечён код палета '(00)446602538100002597', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 1.xlsx
+INFO: В Pallet 1.xlsx: извлечён код палета '(00)446602538100002351', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 2.xlsx
+INFO: В Pallet 2.xlsx: извлечён код палета '(00)446602538100002368', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 3.xlsx
+INFO: В Pallet 3.xlsx: извлечён код палета '(00)446602538100002375', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 4.xlsx
+INFO: В Pallet 4.xlsx: извлечён код палета '(00)446602538100002382', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 5.xlsx
+INFO: В Pallet 5.xlsx: извлечён код палета '(00)446602538100002399', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 6.xlsx
+INFO: В Pallet 6.xlsx: извлечён код палета '(00)446602538100002405', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 7.xlsx
+INFO: В Pallet 7.xlsx: извлечён код палета '(00)446602538100002412', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 8.xlsx
+INFO: В Pallet 8.xlsx: извлечён код палета '(00)446602538100002429', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 9.xlsx
+INFO: В Pallet 9.xlsx: извлечён код палета '(00)446602538100002436', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 10.xlsx
+INFO: В Pallet 10.xlsx: извлечён код палета '(00)446602538100002443', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 11.xlsx
+INFO: В Pallet 11.xlsx: извлечён код палета '(00)446602538100002450', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 12.xlsx
+INFO: В Pallet 12.xlsx: извлечён код палета '(00)446602538100002467', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 13.xlsx
+INFO: В Pallet 13.xlsx: извлечён код палета '(00)446602538100002474', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 14.xlsx
+INFO: В Pallet 14.xlsx: извлечён код палета '(00)446602538100002481', удалено 55 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 15.xlsx
+INFO: В Pallet 15.xlsx: извлечён код палета '(00)446602538100002498', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 16.xlsx
+INFO: В Pallet 16.xlsx: извлечён код палета '(00)446602538100002504', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 17.xlsx
+INFO: В Pallet 17.xlsx: извлечён код палета '(00)446602538100002511', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 18.xlsx
+INFO: В Pallet 18.xlsx: извлечён код палета '(00)446602538100002528', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 19.xlsx
+INFO: В Pallet 19.xlsx: извлечён код палета '(00)446602538100002535', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 20.xlsx
+INFO: В Pallet 20.xlsx: извлечён код палета '(00)446602538100002542', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 21.xlsx
+INFO: В Pallet 21.xlsx: извлечён код палета '(00)446602538100002559', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 22.xlsx
+INFO: В Pallet 22.xlsx: извлечён код палета '(00)446602538100002566', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 23.xlsx
+INFO: В Pallet 23.xlsx: извлечён код палета '(00)446602538100002573', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 24.xlsx
+INFO: В Pallet 24.xlsx: извлечён код палета '(00)446602538100002580', удалено 73 строк.
+INFO: Читаю \\Mac\Home\Desktop\Выгрузка 1С - Татьяна\Pallet 25.xlsx
+INFO: В Pallet 25.xlsx: извлечён код палета '(00)446602538100002597', удалено 73 строк.
+INFO: Order ID: 0000-Q_002_М_(0)
+INFO: SKU 'Clausthaler Dry Hopped, Non-Alcohol beer, <0,5% Alc., 24 Tray X 0,33 Lit., Bottle': объединено 14 файлов, строк: 18144
+ERROR: Не удалось сохранить файл \\Mac\Home\Desktop\ОТЧЕТ. 0000-Q_002_М_(0)_Clausthaler_Dry_Hopped,_Non-Alcohol_beer,_<0,5%_Alc.,_24_Tray_X_0,33_Lit.,_Bottle.xls: [Errno 22] Invalid argument: '\\\\Mac\\Home\\Desktop\\ОТЧЕТ. 0000-Q_002_М_(0)_Clausthaler_Dry_Hopped,_Non-Alcohol_beer,_<0,5%_Alc.,_24_Tray_X_0,33_Lit.,_Bottle.xls'
+  → Рекомендация: Проверьте, что путь к файлу корректен и нет открытого файла с таким именем.
+ERROR: Сохранение результата для SKU 'Clausthaler Dry Hopped, Non-Alcohol beer, <0,5% Alc., 24 Tray X 0,33 Lit., Bottle' завершилось с ошибкой.

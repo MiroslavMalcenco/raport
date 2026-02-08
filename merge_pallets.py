@@ -129,6 +129,117 @@ def process_pallet_file(path: Path) -> Optional[pd.DataFrame]:
     return cleaned_df
 
 
+def extract_pallet_number_from_filename(path: Path) -> int:
+    """Извлекает порядковый номер палета из имени файла, например 'Pallet 12.xlsx' -> 12.
+
+    Raises Exception при неудаче с описательным сообщением.
+    """
+    import re
+
+    name = path.name
+    m = re.search(r"(\d+)", name)
+    if not m:
+        raise Exception(f"Не удалось извлечь номер палета из имени файла: {name}")
+    try:
+        return int(m.group(1))
+    except Exception:
+        raise Exception(f"Некорректный номер палета в имени файла: {name}")
+
+
+def extract_name_before_comma(text: Optional[str]) -> str:
+    """Возвращает часть строки до первой запятой, обрезанную по краям.
+
+    Если текст пустой или None — возвращает пустую строку.
+    """
+    if text is None:
+        return ""
+    s = str(text)
+    parts = s.split(",", 1)
+    return parts[0].strip()
+
+
+def load_and_sort_pallet_files(folder: Path) -> List[tuple]:
+    """Находит все файлы Pallet *.xlsx в папке, извлекает номера и возвращает
+    список кортежей (номер_палета, путь), отсортированных по номеру.
+
+    Raises Exception если не найдено ни одного файла или при ошибке извлечения номера.
+    """
+    files = []
+    # Поддерживаем расширения .xls, .xlsx и др.
+    for p in folder.glob("Pallet *"):
+        if p.is_file() and p.suffix.lower().startswith('.xls'):
+            try:
+                num = extract_pallet_number_from_filename(p)
+            except Exception as e:
+                raise
+            files.append((num, p))
+
+    if not files:
+        return []
+
+    files.sort(key=lambda x: x[0])
+    return files
+
+
+def get_unique_product_from_file(df: pd.DataFrame, filename: str) -> str:
+    """Возвращает единственное уникальное значение столбца 'Номенклатура'.
+
+    Raises Exception при пустом файле, отсутствии номенклатуры или множестве значений.
+    """
+    if df is None or df.empty:
+        raise Exception(f"Файл пустой: {filename}")
+
+    if "Номенклатура" not in df.columns:
+        raise Exception(f"В файле {filename} отсутствует столбец 'Номенклатура'")
+
+    unique_products = df["Номенклатура"].dropna().astype(str).str.strip().unique()
+    if len(unique_products) == 0:
+        raise Exception(f"Файл {filename}: не найдена номенклатура")
+    if len(unique_products) > 1:
+        raise Exception(f"В одном файле найдено более одного уникального значения 'Номенклатура' ({filename})")
+
+    return unique_products[0]
+
+
+def validate_files_against_spec(sorted_files: List[tuple], spec_df: pd.DataFrame) -> None:
+    """Валидирует соответствие входных файлов и спецификации по порядку.
+
+    sorted_files: список (номер, Path) отсортированных по номеру;
+    spec_df: DataFrame со второй страницы спецификации.
+
+    Raises Exception с подробными сообщениями при несоответствиях.
+    """
+    # ШАГ 3: проверка количества
+    if spec_df is None:
+        return
+    files_count = len(sorted_files)
+    spec_count = len(spec_df)
+    if files_count != spec_count:
+        raise Exception("Количество входных файлов не соответствует спецификации")
+
+    # ШАГ 4: проверка соответствия SKU / продукта по порядку
+    for idx, (pallet_num, path) in enumerate(sorted_files):
+        # Читаем и обрабатываем файл точно так же, как в pipeline
+        df = process_pallet_file(path)
+        try:
+            product_full = get_unique_product_from_file(df, path.name)
+        except Exception:
+            raise
+
+        # Берём ожидаемый Product name из i-й строки спецификации
+        try:
+            expected_full = spec_df.iloc[idx]["Product name"]
+        except Exception:
+            expected_full = None
+
+        # Сравниваем часть до первой запятой
+        product_part = extract_name_before_comma(product_full)
+        expected_part = extract_name_before_comma(expected_full)
+
+        if product_part != expected_part:
+            raise Exception(f"Несоответствие продукта:\n файл {path.name}\n ожидается: {expected_part}\n найдено: {product_part}")
+
+
 def merge_dataframes(dfs: List[pd.DataFrame]) -> pd.DataFrame:
     """Объединяет список DataFrame-ов последовательно, сохраняя заголовки один раз.
     Приводит к требуемому порядку столбцов.
@@ -142,6 +253,7 @@ def merge_dataframes(dfs: List[pd.DataFrame]) -> pd.DataFrame:
         "Код палета",
         "Номенклатура",
         "Номер короба",
+        "Порядковый номер палета",
     ]
 
     normalized = []
@@ -194,32 +306,38 @@ def load_specification(path: Path) -> Optional[pd.DataFrame]:
 
 
 def enrich_with_spec(df: pd.DataFrame, spec: pd.DataFrame) -> pd.DataFrame:
-    """Добавляет столбцы MFD и BBD на основе номера палета, извлечённого из 'Номер короба'."""
-    if df.empty:
+    """Добавляет столбцы MFD и BBD согласно порядку строк спецификации.
+
+    Для соответствия используется порядок файлов (значения в столбце
+    'Порядковый номер палета') и порядок строк в спецификации: i-й
+    уникальный номер палета в объединённом DataFrame соответствует
+    i-й строке спецификации.
+    """
+    if df.empty or spec is None:
         return df
 
-    # Создаём карту: Pallet number -> {MFD:..., BBD:...}
-    mapping: Dict[str, Dict[str, str]] = {}
-    if spec is not None and "Pallet number" in spec.columns:
-        for _, row in spec.iterrows():
-            key = str(row.get("Pallet number", "")).strip()
-            mapping.setdefault(key, {"MFD": None, "BBD": None})
-            mapping[key]["MFD"] = row.get("MFD")
-            mapping[key]["BBD"] = row.get("BBD")
+    if "Порядковый номер палета" not in df.columns:
+        return df
 
-    # Вытащим номер палета из 'Номер короба' (до дефиса)
-    def extract_pallet_number(value: str) -> str:
-        try:
-            s = str(value)
-            return s.split("-")[0].strip()
-        except Exception:
-            return ""
-
-    pallet_numbers = df.get("Номер короба", pd.Series([""] * len(df))).astype(str).apply(extract_pallet_number)
+    # Список уникальных порядковых номеров в порядке их появления
+    unique_pallets = list(pd.Series(df["Порядковый номер палета"]).dropna().astype(int).astype(str).unique())
 
     mfd_list = []
     bbd_list = []
-    for pn in pallet_numbers:
+
+    # Построим карту: порядковый номер палета -> строка спецификации (по порядку)
+    mapping = {}
+    for idx, pn in enumerate(unique_pallets):
+        if idx < len(spec):
+            row = spec.iloc[idx]
+            mapping[pn] = {
+                "MFD": row.get("MFD"),
+                "BBD": row.get("BBD"),
+            }
+        else:
+            mapping[pn] = {"MFD": None, "BBD": None}
+
+    for pn in df["Порядковый номер палета"].astype(int).astype(str):
         info = mapping.get(pn)
         if info:
             mfd_list.append(info.get("MFD"))
@@ -368,6 +486,14 @@ def generate_output_filename(order_id: str, output_dir: Path) -> Path:
     return output_dir / filename
 
 
+def generate_output_filename_for_sku(order_id: str, sku: str, output_dir: Path) -> Path:
+    """Формирует имя выходного файла: ОТЧЕТ. <OrderID>_<SKU>.xls (без опасных символов)."""
+    safe_order = order_id.strip().replace("/", "_").replace("\\", "_")
+    safe_sku = str(sku).strip().replace("/", "_").replace("\\", "_").replace(" ", "_")
+    filename = f"ОТЧЕТ. {safe_order}_{safe_sku}.xls"
+    return output_dir / filename
+
+
 def save_output(df: pd.DataFrame, out_path: Path) -> bool:
     try:
         # Принудительно сохраняем в .xls
@@ -439,7 +565,12 @@ def save_output(df: pd.DataFrame, out_path: Path) -> bool:
 
 def run_pipeline(base_dir: Path, spec_path: Optional[Path], out_path: Path) -> bool:
     logger.info(f"Базовая директория: {base_dir}")
-
+    # Сбрасываем список предыдущих выходных файлов
+    global last_output_files
+    try:
+        last_output_files.clear()
+    except Exception:
+        pass
     if spec_path and spec_path == out_path:
         logger.error("Файл спецификации не может быть тем же, что и выходной файл.")
         return False
@@ -447,26 +578,13 @@ def run_pipeline(base_dir: Path, spec_path: Optional[Path], out_path: Path) -> b
     processed_dfs: List[pd.DataFrame] = []
 
     try:
-        # Шаг 1: обработать отдельные Pallet i.xlsx
-        for i in range(1, 31):
-            fname = f"Pallet {i}.xlsx"
-            p = base_dir / fname
-            if not p.exists():
-                logger.debug(f"Файл {fname} не найден — пропускаю.")
-                continue
-            df = process_pallet_file(p)
-            if df is not None and not df.empty:
-                processed_dfs.append(df)
-
-        # Шаг 2: объединение
-        if not processed_dfs:
-            logger.error("Нет обработанных файлов для объединения.\n  → Рекомендация: Убедитесь, что в выбранной папке есть файлы 'Pallet 1.xlsx' .. 'Pallet 30.xlsx'.")
+        # ШАГ 1: найти и отсортировать входные Pallet-файлы
+        sorted_files = load_and_sort_pallet_files(base_dir)
+        if not sorted_files:
+            logger.error("Не найдено входных Pallet-файлов в указанной директории.")
             return False
 
-        merged = merge_dataframes(processed_dfs)
-        logger.info(f"Объединено {len(processed_dfs)} файлов, итоговых строк: {len(merged)}")
-
-        # Шаг 3: загрузка спецификации (для валидации)
+        # ШАГ 2: загрузка спецификации (если указана) и предварительная валидация
         spec_df = None
         if spec_path:
             if not spec_path.exists():
@@ -477,38 +595,100 @@ def run_pipeline(base_dir: Path, spec_path: Optional[Path], out_path: Path) -> b
                 logger.error("Не удалось загрузить спецификацию. Обработка остановлена.")
                 return False
 
-            # Выполняем строгую валидацию спецификации на исходных (неизменённых) данных
+            # Выполняем валидацию: количество файлов и соответствие Product name по порядку
             try:
-                validate_specification(merged, spec_df, pallet_files_count=len(processed_dfs))
+                validate_files_against_spec(sorted_files, spec_df)
             except Exception as e:
                 logger.error(str(e))
                 return False
 
-        # Автоматическое формирование имени файла из Order ID
-        if spec_df is not None:
-            try:
-                order_id = get_order_id(spec_df)
-                out_path = generate_output_filename(order_id, out_path.parent)
-                logger.info(f"Имя выходного файла: {out_path.name}")
-            except Exception as e:
-                logger.error(str(e))
+        # ШАГ 3: обработать файлы в отсортированном порядке и добавлять столбец 'Порядковый номер палета'
+        # Также собираем маппинг порядкового номера палета -> MFD/BBD из спецификации по позиции
+        records = []  # список словарей: {idx, pallet_num, path, df, expected_product}
+        pn_to_dates = {}
+        for idx, (pallet_num, p) in enumerate(sorted_files):
+            df = process_pallet_file(p)
+            if df is None or df.empty:
+                logger.error(f"Файл {p.name} пустой или невалидный.")
                 return False
+            # Добавляем порядковый номер палета, извлечённый из имени файла
+            df["Порядковый номер палета"] = int(pallet_num)
 
-        # Шаг 4: очистка первых трёх столбцов
-        merged = clean_parentheses(merged)
+            expected_product = None
+            if spec_df is not None and idx < len(spec_df):
+                expected_product_full = spec_df.iloc[idx].get("Product name")
+                expected_product = extract_name_before_comma(expected_product_full)
+                # Сохраним MFD/BBD для этого порядкового номера (по позиции в спецификации)
+                mfd = spec_df.iloc[idx].get("MFD") if spec_df is not None else None
+                bbd = spec_df.iloc[idx].get("BBD") if spec_df is not None else None
+                pn_to_dates[str(int(pallet_num))] = (mfd, bbd)
 
-        # Шаг 5: обогащение (если спецификация была загружена)
-        if spec_df is not None:
-            merged = enrich_with_spec(merged, spec_df)
+            records.append({"idx": idx, "pallet_num": int(pallet_num), "path": p, "df": df, "expected_product": expected_product})
 
-        # Шаг 5.1: форматирование дат
-        merged = format_date_columns(merged, ["MFD", "BBD"])
+        # Заполним processed_dfs упорядоченно
+        for r in records:
+            processed_dfs.append(r["df"])
 
-        # Шаг 6: сохранение (только если ошибок не было)
-        save_ok = save_output(merged, out_path)
-        if not save_ok:
-            logger.error("Сохранение результата завершилось с ошибкой. Файл не создан.\n  → Рекомендация: Закройте открытый выходной файл и попробуйте снова.")
+        # Шаг 2: объединение
+        if not processed_dfs:
+            logger.error("Нет обработанных файлов для объединения.\n  → Рекомендация: Убедитесь, что в выбранной папке есть файлы 'Pallet 1.xlsx' .. 'Pallet 30.xlsx'.")
             return False
+
+        # Теперь формируем отдельный отчёт для каждого SKU (Product name)
+        if spec_df is None:
+            logger.error("Спецификация не указана — невозможно сформировать per-SKU отчёты.")
+            return False
+
+        try:
+            order_id = get_order_id(spec_df)
+        except Exception as e:
+            logger.error(str(e))
+            return False
+
+        # Группировка по части Product name до запятой (expected_product уже содержит часть до запятой)
+        sku_groups = {}
+        for r in records:
+            sku_key = r.get("expected_product") or ""
+            sku_groups.setdefault(sku_key, []).append(r)
+
+        # Для каждого SKU формируем DataFrame, обогащаем и сохраняем
+        for sku, recs in sku_groups.items():
+            # Сортируем записи по их исходному индексу, чтобы сохранить порядок
+            recs.sort(key=lambda x: x["idx"])
+            dfs = [r["df"] for r in recs]
+            merged_sku = merge_dataframes(dfs)
+            logger.info(f"SKU '{sku}': объединено {len(dfs)} файлов, строк: {len(merged_sku)}")
+
+            # Очистка
+            merged_sku = clean_parentheses(merged_sku)
+
+            # Добавим MFD/BBD по маппингу порядкового номера палета
+            if not merged_sku.empty:
+                pn_series = merged_sku["Порядковый номер палета"].astype(int).astype(str)
+                mfd_list = []
+                bbd_list = []
+                for pn in pn_series:
+                    mfd, bbd = pn_to_dates.get(pn, (None, None))
+                    mfd_list.append(mfd)
+                    bbd_list.append(bbd)
+                merged_sku["MFD"] = mfd_list
+                merged_sku["BBD"] = bbd_list
+
+            # Форматирование дат
+            merged_sku = format_date_columns(merged_sku, ["MFD", "BBD"])
+
+            # Сохранение файла для SKU
+            # Для имени файла используем OrderID + название до запятой
+            out_path_sku = generate_output_filename_for_sku(order_id, sku or "UNKNOWN_SKU", out_path.parent)
+            save_ok = save_output(merged_sku, out_path_sku)
+            if not save_ok:
+                logger.error(f"Сохранение результата для SKU '{sku}' завершилось с ошибкой.")
+                return False
+            # Запомним сгенерированный файл
+            try:
+                last_output_files.append(out_path_sku)
+            except Exception:
+                pass
 
         return True
     except Exception as e:
@@ -535,6 +715,9 @@ class TextHandler(logging.Handler):
 # Глобальный коллектор ошибок — заполняется из логгера
 error_collector: List[str] = []
 warning_collector: List[str] = []
+ 
+# Список последних сгенерированных выходных файлов (для открытия из GUI)
+last_output_files: List[Path] = []
 
 
 class ErrorCollectorHandler(logging.Handler):
@@ -672,19 +855,30 @@ def launch_gui() -> None:
             out_path_var.set(path)
 
     def open_output_file() -> None:
-        p = Path(out_path_var.get())
-        if not p.exists():
-            messagebox.showerror("Ошибка", "Выходной файл не найден.")
+        # Если есть список сгенерированных файлов — откроем их все, иначе — откроем путь из поля
+        global last_output_files
+        files_to_open: List[Path] = []
+        if last_output_files:
+            files_to_open = list(last_output_files)
+        else:
+            p = Path(out_path_var.get())
+            files_to_open = [p]
+
+        not_found = [str(p) for p in files_to_open if not p.exists()]
+        if not_found:
+            messagebox.showerror("Ошибка", "Выходной файл(ы) не найдены:\n" + "\n".join(not_found))
             return
-        try:
-            if sys.platform == "darwin":
-                subprocess.run(["open", str(p)])
-            elif sys.platform.startswith("win"):
-                os.startfile(str(p))
-            else:
-                subprocess.run(["xdg-open", str(p)])
-        except Exception as e:
-            messagebox.showerror("Ошибка", f"Не удалось открыть файл: {e}")
+
+        for p in files_to_open:
+            try:
+                if sys.platform == "darwin":
+                    subprocess.run(["open", str(p)])
+                elif sys.platform.startswith("win"):
+                    os.startfile(str(p))
+                else:
+                    subprocess.run(["xdg-open", str(p)])
+            except Exception as e:
+                messagebox.showerror("Ошибка", f"Не удалось открыть файл {p}: {e}")
 
     # ── Панель ошибок (скрыта по умолчанию) ──
     error_panel = tk.Frame(main_frame, bg="#FFDDDD", bd=2, relief="groove")
