@@ -356,9 +356,24 @@ def format_date_columns(df: pd.DataFrame, cols: List[str]) -> pd.DataFrame:
     for c in cols:
         if c not in df.columns:
             continue
-        # Преобразуем в datetime, затем в нужный формат
-        dt = pd.to_datetime(df[c], errors="coerce")
-        df[c] = dt.dt.strftime("%d.%m.%Y")
+        s = df[c]
+        # Сначала пробуем обычный парсинг с учетом dayfirst (чтобы корректно распарсить d/m/y)
+        parsed = pd.to_datetime(s, dayfirst=True, errors="coerce")
+
+        # Для значений, которые не удалось распарсить, попробуем интерпретировать как Excel-сериал
+        need_excel = parsed.isna() & s.notna()
+        if need_excel.any():
+            try:
+                numeric = pd.to_numeric(s[need_excel], errors="coerce")
+                excel_parsed = pd.to_datetime(numeric, unit="d", origin="1899-12-30", errors="coerce")
+                parsed.loc[need_excel] = excel_parsed
+            except Exception:
+                # если что-то пошло не так — пропускаем и оставляем NaT
+                pass
+
+        # Форматируем в строку 'ДД.ММ.ГГГГ', незаполненные оставляем пустой строкой
+        df[c] = parsed.dt.strftime("%d.%m.%Y")
+        df[c] = df[c].fillna("")
     return df
 
 
