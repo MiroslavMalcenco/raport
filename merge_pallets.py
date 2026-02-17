@@ -266,11 +266,40 @@ def merge_dataframes(dfs: List[pd.DataFrame]) -> pd.DataFrame:
 
 
 def clean_parentheses(df: pd.DataFrame) -> pd.DataFrame:
-    """Удаляет символы '(' и ')' из первых трёх столбцов, если они существуют."""
+    """Удаляет символы '(' и ')' из первых трёх столбцов, если они существуют.
+
+    Дополнительно: перед последним числом в круглых скобках вставляет символ GS (ASCII 29).
+    """
+    import re
+
+    gs = chr(29)
+
+    def _clean_with_last_gs(value: str) -> str:
+        if not value:
+            return ""
+
+        matches = list(re.finditer(r"\((\d+)\)", value))
+        if not matches:
+            return value
+
+        parts = []
+        cursor = 0
+        last_idx = len(matches) - 1
+        for idx, m in enumerate(matches):
+            parts.append(value[cursor : m.start()])
+            digits = m.group(1)
+            if idx == last_idx:
+                parts.append(gs + digits)
+            else:
+                parts.append(digits)
+            cursor = m.end()
+        parts.append(value[cursor:])
+        return "".join(parts)
+
     cols = ["Код маркировки", "Код упаковки", "Код палета"]
     for c in cols:
         if c in df.columns:
-            df[c] = df[c].fillna("").astype(str).str.replace("(", "", regex=False).str.replace(")", "", regex=False)
+            df[c] = df[c].fillna("").astype(str).apply(_clean_with_last_gs)
     return df
 
 
