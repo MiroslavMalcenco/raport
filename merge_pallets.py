@@ -266,40 +266,52 @@ def merge_dataframes(dfs: List[pd.DataFrame]) -> pd.DataFrame:
 
 
 def clean_parentheses(df: pd.DataFrame) -> pd.DataFrame:
-    """Удаляет символы '(' и ')' из первых трёх столбцов, если они существуют.
+    """Удаляет круглые скобки на фиксированных позициях (0, 3, 18, 21, 29, 32)
+    и вставляет символ GS (ASCII 29) вместо скобки на позиции 29.
 
-    Дополнительно: перед последним числом в круглых скобках вставляет символ GS (ASCII 29).
+    Все остальные символы, включая скобки в других позициях, не изменяются.
     """
     import re
 
     gs = chr(29)
 
-    def _clean_with_last_gs(value: str) -> str:
+    # Позиции скобок, которые нужно удалить (без вставки GS)
+    _remove_positions = {0, 3, 18, 21, 32}
+    # Позиция скобки, которую нужно заменить на GS
+    _gs_position = 29
+
+    def _clean_positional_gs(value: str) -> str:
         if not value:
             return ""
+        result = []
+        for i, ch in enumerate(value):
+            if i in _remove_positions and ch in ("(", ")"):
+                continue
+            if i == _gs_position and ch in ("(", ")"):
+                result.append(gs)
+                continue
+            result.append(ch)
+        return "".join(result)
 
-        matches = list(re.finditer(r"\((\d+)\)", value))
-        if not matches:
-            return value
+    def _clean_positional_no_gs(value: str) -> str:
+        if not value:
+            return ""
+        remove_all = _remove_positions | {_gs_position}
+        result = []
+        for i, ch in enumerate(value):
+            if i in remove_all and ch in ("(", ")"):
+                continue
+            result.append(ch)
+        return "".join(result)
 
-        parts = []
-        cursor = 0
-        last_idx = len(matches) - 1
-        for idx, m in enumerate(matches):
-            parts.append(value[cursor : m.start()])
-            digits = m.group(1)
-            if idx == last_idx:
-                parts.append(gs + digits)
-            else:
-                parts.append(digits)
-            cursor = m.end()
-        parts.append(value[cursor:])
-        return "".join(parts)
-
-    cols = ["Код маркировки", "Код упаковки", "Код палета"]
-    for c in cols:
+    cols_gs = ["Код маркировки", "Код упаковки"]
+    for c in cols_gs:
         if c in df.columns:
-            df[c] = df[c].fillna("").astype(str).apply(_clean_with_last_gs)
+            df[c] = df[c].fillna("").astype(str).apply(_clean_positional_gs)
+
+    c = "Код палета"
+    if c in df.columns:
+        df[c] = df[c].fillna("").astype(str).apply(_clean_positional_no_gs)
     return df
 
 
@@ -705,6 +717,22 @@ def run_pipeline(base_dir: Path, spec_path: Optional[Path], out_path: Path) -> b
 
             # Очистка
             merged_sku = clean_parentheses(merged_sku)
+
+            # Проверка длины кодов маркировки (должна быть строго 32 символа после предобработки)
+            if "Код маркировки" in merged_sku.columns:
+                codes = merged_sku["Код маркировки"].fillna("").astype(str)
+                invalid_mask = codes.apply(len) != 32
+                invalid_count = int(invalid_mask.sum())
+                if invalid_count > 0:
+                    for row_idx, code in codes[invalid_mask].items():
+                        logger.error(
+                            f"Код маркировки некорректной длины ({len(code)} вместо 32): '{code}'"
+                        )
+                    logger.error(
+                        f"SKU '{sku}': найдено {invalid_count} кодов маркировки с некорректной длиной. "
+                        f"Финальный файл не будет создан."
+                    )
+                    return False
 
             # Добавим MFD/BBD по маппингу порядкового номера палета
             if not merged_sku.empty:
