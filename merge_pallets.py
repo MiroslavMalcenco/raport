@@ -11,6 +11,7 @@ import logging
 import sys
 import os
 import subprocess
+import tempfile
 from typing import List, Dict, Optional
 
 import argparse
@@ -23,12 +24,25 @@ import pandas as pd
 # При запуске как --noconsole exe перенаправляем stderr в файл,
 # чтобы ошибки не пропадали бесследно.
 if getattr(sys, 'frozen', False):
-    _crash_log = Path(sys.executable).parent / 'crash.log'
+    # В .app (macOS) папка приложения может быть не лучшим местом для записи.
+    # Пишем в пользовательские логи (или во временную директорию как fallback).
     try:
-        sys.stderr = open(str(_crash_log), 'w', encoding='utf-8')
+        if sys.platform == "darwin":
+            log_dir = Path.home() / "Library" / "Logs" / "merge_pallets"
+            log_dir.mkdir(parents=True, exist_ok=True)
+            _crash_log = log_dir / "crash.log"
+        else:
+            _crash_log = Path(sys.executable).parent / "crash.log"
+
+        sys.stderr = open(str(_crash_log), "w", encoding="utf-8")
         sys.stdout = sys.stderr
     except Exception:
-        pass
+        try:
+            _crash_log = Path(tempfile.gettempdir()) / "merge_pallets_crash.log"
+            sys.stderr = open(str(_crash_log), "w", encoding="utf-8")
+            sys.stdout = sys.stderr
+        except Exception:
+            pass
 
 
 logger = logging.getLogger(__name__)
